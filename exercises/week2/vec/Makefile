@@ -1,9 +1,11 @@
-Out.txt : vector.exe
-	mono vector.exe > Out.txt
+Out.txt: main.exe
+	mono $< > $@ 
 
-vector.exe : vector.cs
-	mcs vector.cs
+main.exe: main.cs vec.dll
+	mcs -target:exe -out:main.exe -reference:vec.dll main.cs
+
+vec.dll : vec.cs
+	mcs -target:library -out:vec.dll vec.cs
 
 clean:
-	rm -f Out.txt vector.exe
-
+	rm -f Out.txt vec.dll main.exe

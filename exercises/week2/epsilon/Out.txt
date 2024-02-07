@@ -1,0 +1,21 @@
+my max int = 2147483647
+int.MaxValue = 2147483647
+my min int = -2147483648
+int.MinValue = -2147483648
+
+Machine epsilon for double and float:
+double x = 2.22044604925031E-16, Pow(2,-52) = 2.22044604925031E-16
+float y = 1.192093E-07, Pow(2,-23) = 1.19209289550781E-07
+
+Tiny:
+a==b ? False - They are not equal since the order of operations matter in this case.
+a>1  ? False - This is false since the tiny won't be enough to make a precision rounding to above the 1.
+b>1  ? True - This is true since the two tiny's will round such that they are greater than 0, we than add 1 such that b will be greater than 1.
+
+0.1 and == operator:
+d1=7.999999999999999e-001
+d2=8.000000000000000e-001
+d1==d2 ? => False
+
+By use of the approx function:
+d1 approx d2 = approx(d1,d2) = True
