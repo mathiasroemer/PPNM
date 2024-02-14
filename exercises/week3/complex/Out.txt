@@ -1,0 +1,19 @@
+sqrt(-1):
+sqrt(-1) = (6.12303176911189E-17,1)
+I = (0,1)
+sqrt(-1) approx I : True
+sqrt(-1) approx -I : False
+
+ln(i):
+ln(i) = (0,1.5707963267949)
+I*PI/2 = (0,1.5707963267949)
+ln(i) approx I*PI/2 : True
+
+sqrt(i):
+sqrt(i) = (0.707106781186548,0.707106781186547)
+1/sqrt(2) + i/sqrt(2) = (0.707106781186547,0.707106781186547)
+sqrt(i) approx 1/sqrt(2) + i/sqrt(2): True
+
+i^i:
+i^i = (0.207879576350762,0)
+sqrt(i) approx 0.208: False
