@@ -1,8 +1,14 @@
 \
 set terminal svg background "white" ;\
-set out "Erf.gnuplot.svg" ;\
-plot \
-"Out.txt" with lines \
-,"erf.data.txt" using 1:2 with points pointtype 6 \
-,"erf.data.txt" using (-($1)):(-($2)) with points pointtype 6 ;\
+set out "Out.erf.gnuplot.svg" ;\
+set key left ;\
+set xlabel "x" ;\
+set ylabel "erf(x)" ;\
+set tics out ;\
+set grid ;\
+set title "Error function" ;\
+plot [-3:3]\
+"Out.erf.txt" with lines notitle \
+,"erf.data.txt" using 1:2 with points pointtype 6 notitle \
+,"erf.data.txt" using (-($1)):(-($2)) with points pointtype 6 notitle ;\
 
