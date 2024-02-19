@@ -1,0 +1,5 @@
+\
+set terminal svg background "white" ;\
+set out "Erf.gnuplot.svg" ;\
+plot "Out.txt" with lines ;\
+

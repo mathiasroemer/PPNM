@@ -1,0 +1,9 @@
+class main {
+	public static int Main() {
+		for(double x=-3;x<=3;x+=1.0/8){//we use doubles that can be represented by binary numbers
+			System.Console.WriteLine($"{x} {sfuns.erf(x)}");
+		}
+
+		return 0;
+	}
+}
