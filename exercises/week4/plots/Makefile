@@ -7,8 +7,10 @@ Erf.gnuplot.svg : Out.txt Makefile
 	echo '\
 	set terminal svg background "white" ;\
 	set out "$@" ;\
-	plot "$<" with lines ;\
-	' | tee log.gpi | gnuplot
+	plot \
+	"$<" with lines \
+	,"erf.data.txt" using 1:2 with points pointtype 6 ;\
+' | tee log.gpi | gnuplot
 
 Out.txt: main.exe
 	mono $< > $@
