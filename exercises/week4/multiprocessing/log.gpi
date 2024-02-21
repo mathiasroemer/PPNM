@@ -1,0 +1,8 @@
+\
+	set terminal svg background "white";\
+	set out "out.times.svg" ;\
+	set xlabel "number of threads" ;\
+	set ylabel "real time" ;\
+	set title "Running time as function of number of threads" ;\
+	plot "out.times.txt" with lp ;\
+	

@@ -1,0 +1,4 @@
+The sum variable is not local giving a race condition making the threads trying to access a shared variable which will take more time. Additionally will there be some inaccuracy to the final result since different double are added to eachother.
+Main: nterms=200000000
+Main: Total sum = 13.7670823652994
+ 2.06 10.29

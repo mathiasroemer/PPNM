@@ -1,0 +1,4 @@
+The result is now more correct but is still slower, once again because of the race condition.
+Main: nterms=200000000
+Main: Total sum = 19.6910435919135
+ 1.12 5.14
