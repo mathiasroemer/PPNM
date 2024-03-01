@@ -1,0 +1,12 @@
+\
+	set terminal svg background "white" ;\
+	set out "Out.n3fit.svg" ;\
+	set xlabel "Size N of matrix";\
+	set ylabel "Elapsed time (s)";\
+	set grid ;\
+	set title "Elapsed time as a function of N";\
+	f(x)=A*x+B;\
+	fit f(x) "out.times.data" via A,B;\
+	plot "out.times.data" with points pointtype 6 title "Data" \
+	,f(x) title "A*N^3 + C" \
+
