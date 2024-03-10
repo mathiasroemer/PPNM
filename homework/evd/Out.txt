@@ -1,0 +1,50 @@
+A (Random symmetric matrix):
+     0.425      0.133      0.691      0.304 
+     0.133     0.0801      0.643      0.471 
+     0.691      0.643      0.782      0.673 
+     0.304      0.471      0.673      0.502 
+
+Implement Jacobi eigenvalue algorithm on A:
+w:    -0.408     -0.098      0.254       2.04 
+
+V:
+    -0.385      0.308      0.766      0.411 
+    -0.723     -0.441     -0.384      0.367 
+     0.566      -0.46      0.107      0.676 
+    0.0848      0.707     -0.504      0.489 
+
+We get D from w:
+    -0.408          0          0          0 
+         0     -0.098          0          0 
+         0          0      0.254          0 
+         0          0          0       2.04 
+
+V^T * A * V:
+    -0.408  -2.81e-12   2.78e-17  -2.26e-16 
+ -2.81e-12     -0.098   3.47e-17  -4.65e-10 
+  1.39e-17   1.39e-17      0.254   8.32e-12 
+ -8.33e-17  -4.65e-10   8.32e-12       2.04 
+Using matrix approx function with D we get: True
+We see that it is approximately equal to D.
+
+V * D * V.T:
+     0.425      0.133      0.691      0.304 
+     0.133     0.0801      0.643      0.471 
+     0.691      0.643      0.782      0.673 
+     0.304      0.471      0.673      0.502 
+We see that it is equal to A.
+
+V^T * V:
+         1  -7.63e-17  -2.57e-16  -2.78e-17 
+ -7.63e-17          1          0  -5.55e-17 
+ -2.57e-16          0          1   8.33e-17 
+ -2.78e-17  -5.55e-17   8.33e-17          1 
+We see that it is equal to the identity matrix.
+
+V * V.T:
+         1   1.94e-16  -1.11e-16   1.94e-16 
+  1.94e-16          1    2.5e-16  -2.22e-16 
+ -1.11e-16    2.5e-16          1          0 
+  1.94e-16  -2.22e-16          0          1 
+We see that it is also equal to the identity matrix.
+

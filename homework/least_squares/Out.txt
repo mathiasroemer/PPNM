@@ -1,0 +1,48 @@
+Lets first be sure that the QR decomp works:
+A (Random tall matrix):
+     0.985      0.908      0.744 
+     0.812      0.739     0.0483 
+     0.017      0.149      0.195 
+      0.63       0.91      0.495 
+     0.189      0.461     0.0787 
+     0.846      0.567      0.255 
+   0.00684      0.941       0.16 
+    0.0245       0.78    0.00217 
+Q:
+     0.591    -0.0271      0.543 
+     0.487    -0.0297     -0.638 
+    0.0102      0.102       0.32 
+     0.378      0.235      0.287 
+     0.113      0.215     -0.104 
+     0.508     -0.188      -0.21 
+    0.0041      0.717      0.026 
+    0.0147       0.58     -0.242 
+R:
+      1.67        1.6      0.791 
+         0        1.3        0.2 
+         0          0      0.519 
+Q * R
+     0.985      0.908      0.744 
+     0.812      0.739     0.0483 
+     0.017      0.149      0.195 
+      0.63       0.91      0.495 
+     0.189      0.461     0.0787 
+     0.846      0.567      0.255 
+   0.00684      0.941       0.16 
+    0.0245       0.78    0.00217 
+We see R is upper triangular and the product of Q and R is A giving us that the QR decomposition routines work for tall matrices.
+
+Lets now investigate the law of radioactive decay:
+
+By doing an ordinary least squares fit on the data using ln(y) = ln(a)-l*t, we find the coefficients:
+a = 142.010145492731, lambda = 0.171046463563344
+
+Half-life time found: T_1/2 = Log(2)/lambda = 4.0523911814362 days
+Half-life time modern value: T_1/2 = 3.631(2) days
+The covariance matrix is found as:
+    0.0376    0.00373 
+   0.00373   0.000562 
+
+With use of covariance matrix and error propagation, the error on T_1/2 is found as: 0.56145790853428
+such that Half-life time found: T_1/2 = 4.0523911814362 +- 0.56145790853428 days
+We see that the found half-life time lies within the uncertainty of the modern value.

@@ -153,6 +153,17 @@ public static matrix random(int n, int m, Random rnd){
 	return mat;
 }
 
+public static matrix randomSym(int n, Random rnd){
+	var mat = new matrix(n,n);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			mat[i,j] = rnd.NextDouble();
+			mat[j,i] = mat[i,j];
+		}
+	}
+	return mat;
+}
+
 public void set_identity(){ this.set_unity(); }
 public void set_unity(){
 	for(int i=0;i<size1;i++){

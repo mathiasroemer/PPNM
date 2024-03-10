@@ -1,0 +1,16 @@
+\
+	set terminal svg background "white" ;\
+	set out "Out.fit.svg" ;\
+	set xlabel "Time t (days)";\
+	set ylabel "Activity y of ThX (relative units)";\
+	set grid ;\
+	set title "Least squares fit of radioactive decay";\
+	f(x) = a*exp(-l*x);\
+	fp(x) = (a+da)*exp(-(l+dl)*x);\
+	fm(x) = (a-da)*exp(-(l-dl)*x);\
+	a=142.010145492731; l=0.171046463563344; da=1.21398361; dl=0.0237065392;\
+	plot "data.data" with errorbars pointtype 6 title "Data" \
+	,f(x) title "a*exp({/Symbol l}*x)" \
+	,fp(x) title "(a+da)*exp(-({/Symbol l}+d{/Symbol l})*x)" \
+	,fm(x) title "(a-da)*exp(-({/Symbol l}-d{/Symbol l})*x)" \
+
