@@ -1,0 +1,12 @@
+\
+	set terminal svg background "white" ;\
+	set out "Out.LinSpline.svg" ;\
+	set xlabel "x";\
+	set ylabel "y";\
+	set grid ;\
+	set title "Linear interpolation of Cos(x)";\
+	plot "OutLinSpline.txt" index 0 using 1:2 pointtype 6 title "Data" \
+	,"OutLinSpline.txt" index 1 using 1:2 with lines title "Function [Cos(x)]" \
+	,"OutLinSpline.txt" index 2 using 1:2 pointtype 1 title "Linear interpolation" \
+	,"OutLinSpline.txt" index 3 using 1:2 pointtype 6 ps 0.5 title "Integral [Sin(x) ?]" \
+
