@@ -1,0 +1,13 @@
+\
+set terminal svg background "white" ;\
+set out "Out.erf.svg" ;\
+set key left ;\
+set xlabel "x" ;\
+set ylabel "erf(x)" ;\
+set tics out ;\
+set grid ;\
+set title "Error function" ;\
+plot [-3:3]\
+"Out.erf.txt" with lines title "Erf integrator values" \
+,"erf.data.txt" using 1:2 with points pointtype 6 title "Erf exact values" ;\
+

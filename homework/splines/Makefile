@@ -6,9 +6,10 @@ MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(CODE)
 TIME = time --output=$@ --append --format "%e %U"
 
-default : Out.LinSpline.svg
+default : Out.LinSpline.svg OutQSpline.txt
 
-Out.LinSpline.svg : OutLinSpline.txt Makefile
+
+Out.LinSpline.svg : OutLinSpline.txt
 	echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
@@ -23,14 +24,18 @@ Out.LinSpline.svg : OutLinSpline.txt Makefile
 	'|tee log.gpi |gnuplot
 
 
-
-
 OutLinSpline.txt : linspline.exe
+	mono $< > $@
+
+
+OutQSpline.txt : qspline.exe
 	mono $< > $@
 
 vector.dll : $(libs)/vector.cs ; $(MKLIB)
 
 linspline.exe : linspline.cs vector.dll ; $(MKEXE)
+
+qspline.exe : qspline.cs vector.dll ; $(MKEXE)
 
 clean:
 	$(RM) *.exe *.dll *.log [Oo]ut* [Ll]og* [Ee]rr
