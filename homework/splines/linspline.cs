@@ -1,21 +1,7 @@
 using System;
 using static System.Math;
 
-public class main {
-	public class qspline{
-		vector x,y,b,c;
-		public qspline(vector xs, vector ys){
-			/* copy xs,ys into x,y and build b,c */
-			this.x = xs.copy();
-			this.y = ys.copy();
-			System.Console.Out.WriteLine("qspline init");
-		}
-		public double evaluate(double z){
-			/* evaluate the spline using x,y,b,c */
-			return 1.0;
-		}
-	}
-
+public class linspline {
 	public static double linterp(double[] x, double[] y, double z){
 		int i=binsearch(x,z);
 		double dx=x[i+1]-x[i]; if(!(dx>0)) throw new Exception("uups...");
