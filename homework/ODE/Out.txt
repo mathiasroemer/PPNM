@@ -1,0 +1,10 @@
+Part A:
+
+We first test the routines on u''=-u
+
+We then try to solve the Lotka-Volterra system
+
+Part B:
+
+We now want to use the routines on u'' + u= l + epsilon * u^2
+

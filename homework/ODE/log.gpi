@@ -1,0 +1,13 @@
+\
+set terminal svg background "white" ;\
+set out "Out.PartB.svg" ;\
+set key left ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set tics out ;\
+set grid ;\
+set title "Equatorial motion" ;\
+plot "Out.data.txt" using ((1/$2)*cos($1)):((1/$2)*sin($1)) index 2 with lines title "{/Symbol e} = 0, Circular" \
+, "Out.data.txt" using ((1/$2)*cos($1)):((1/$2)*sin($1)) index 3 with lines title "{/Symbol e} = 0, Elliptical"  \
+,  "Out.data.txt" using ((1/$2)*cos($1)):((1/$2)*sin($1)) index 4 with lines title "{/Symbol e} = 0.01, Elliptical" ;\
+
