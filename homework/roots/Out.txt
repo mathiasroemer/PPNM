@@ -1,0 +1,34 @@
+Part A:
+
+The Rosenbrock's valley function is: f(x,y) = (1-x)^2 + 100*(y-x^2)^2
+The gradient is the found analytically to be ∇f(x,y) = (2*(-1+x+200*x^3 - 200*x*y),200*(-x^2+y))
+Using Newton's method with a starting guess at (-10,10) we find the global minimum at:
+         1          1 
+in agreement with the provided minimum at (a,a^2) given by the wikipedia.
+
+
+We now want to use Newton's method to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2
+Which has an analytic gradient of: ∇f(x,y) = (2*(2*x*(x^2+y-11)+x+y^2-7),2*(x^2+2*y*(x+y^2-7)+y-11))
+We try now four different intial guesses and get the results:
+
+Initial guess: (10, 10)
+Result:
+
+         3          2 
+
+Initial guess: (-7, 7)
+Result:
+
+     -2.81       3.13 
+
+Initial guess: (-12, -12)
+Result:
+
+     -3.78      -3.28 
+
+Initial guess: (9, -9)
+Result:
+
+      3.58      -1.85 
+
+Which are all in agreement with the minima given by the wikipedia.

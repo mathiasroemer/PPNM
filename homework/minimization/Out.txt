@@ -1,0 +1,44 @@
+Part A:
+
+The Rosenbrock's valley function is: f(x,y) = (1-x)^2 + 100*(y-x^2)^2
+
+We now use Newton's method with a numerical gradient in order to find the minimum. This is done using five different initial start guesses:
+
+Start guess: (2, 2), Global minimum found after 15 steps:
+         1          1 
+Start guess: (3, 3), Global minimum found after 20 steps:
+         1          1 
+Start guess: (-3, 3), Global minimum found after 29 steps:
+         1          1 
+Start guess: (4, -3), Global minimum found after 25 steps:
+         1          1 
+Start guess: (-10, 10), Global minimum found after 1000 steps:
+     -10.9        120 
+
+We see that the minimum is closely around the provided minimum at (a,a^2) given by the wikipedia and that the algorithm stops after 1000 steps in case the convergence criterion cannot be reached.
+
+
+We now want to use Newton's method with a numerical gradient to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2
+We try now four different intial guesses and get the results:
+
+Initial guess: (10, 10)
+Result after 9 steps:
+
+         3          2 
+
+Initial guess: (-7, 7)
+Result after 7 steps:
+
+     -2.81       3.13 
+
+Initial guess: (-12, -12)
+Result after 8 steps:
+
+     -3.78      -3.28 
+
+Initial guess: (9, -9)
+Result after 9 steps:
+
+      3.58      -1.85 
+
+Which are all in agreement with the minima given by the wikipedia.
