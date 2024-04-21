@@ -1,0 +1,17 @@
+\
+set terminal svg size 1200,500 background "white" ;\
+set out "Out.error_scaling.svg" ;\
+set key left ;\
+set xlabel "N" ;\
+set ylabel "Error" ;\
+set tics out ;\
+set grid ;\
+set title "Error scaling of area of unit circle" ;\
+set multiplot layout 1,2 rowsfirst;\
+plot \
+"Out.data.txt" index 0 using 1:3 with points pointtype 6 title "Estimated error of Plain mc" \
+,"Out.data.txt" index 1 using 1:3 with points pointtype 6 title "Estimated error of Quasi mc" ;\
+plot \
+"Out.data.txt" index 2 using 1:2 with points pointtype 2 title "Exact error of Plain mc" \
+,"Out.data.txt" index 2 using 1:3 with points pointtype 2 title "Exact error of Quasi mc" ;\
+

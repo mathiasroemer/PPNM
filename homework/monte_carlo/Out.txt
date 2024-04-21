@@ -1,0 +1,18 @@
+Part A:
+
+To calculate the area of a circle in polar coordinates, we let r go from 0 to R, and theta from 0 to 2*PI, and then we just integrate over r.
+Using the plain Monte Carlo Integration we get an area of a unit circle using 10000 points: 
+3.14643 +- 0.01803
+
+
+We now try to calculate the difficult singular integral using 1000000 points:
+1.38724 +- 0.00586
+
+Part B:
+
+We now introduce the Van der Corput, Halton and lattice rule sequences.
+We first use the Halton sequence to generate quasi-random sampling for the integration, and then use the lattice rule sequence to get an error estimate by using the difference of the two sequences.
+Using the Quasi-random Monte Carlo Integration, with the Halton sequence, we get an area of a unit circle using 10000 points: 
+3.14052 +- 0.00125
+Using the Quasi-random Monte Carlo Integration, with the lattice rule sequence, we get an area of a unit circle using 10000 points: 
+3.14177 +- 0.00125
