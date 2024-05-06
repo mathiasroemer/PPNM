@@ -1,0 +1,16 @@
+Part A:
+
+First we choose the training function to be Cos(5x-1)*Exp(-x*x)
+We then generate 100 random points between -1 and 1 as our input training sample (X) with the points evaluated in the training function as the output (Y)
+We then initiate the neural network with 3 neurons
+The initial network parameters are:
+         1          1          1          1          1          1          1          1          1 
+
+We then train the network given X and Y
+
+The network parameters then becomes after training:
+    -0.224      0.585       -3.7      0.491      0.381     -0.975     -0.169      0.492       4.98 
+
+
+Network prediction at 0.2: 0.958830651235292
+Real value at 0.2: 0.960789439152323

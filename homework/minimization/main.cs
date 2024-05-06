@@ -6,19 +6,19 @@ public class main{
 		vector gφ = new vector(x.size);
 		double φx = φ(x); /* no need to recalculate at each step */
 		for(int i=0;i<x.size;i++){
-			double dx=Abs(x[i])*Pow(2,-26);
+			double dx=Max(Abs(x[i]),1)*Pow(2,-26);
 			x[i]+=dx;
 			gφ[i]=(φ(x)-φx)/dx;
 			x[i]-=dx;
 		}
 		return gφ;
-	}//Gradient
+	}
 
 	public static matrix hessian(Func<vector,double> φ,vector x){
 		matrix H=new matrix(x.size);
 		vector gφx=gradient(φ,x);
 		for(int j=0;j<x.size;j++){
-			double dx=Abs(x[j])*Pow(2,-13); /* for numerical gradient */
+			double dx=Max(Abs(x[j]),1)*Pow(2,-13); /* for numerical gradient */
 			x[j]+=dx;
 			vector dgφ=gradient(φ,x)-gφx;
 			for(int i=0;i<x.size;i++) H[i,j]=dgφ[i]/dx;
@@ -26,7 +26,7 @@ public class main{
 		}
 		//return H;
 		return (H+H.T)/2; // you think?
-	}//Hessian
+	}
 
 	public static (vector,int) newton(
 		Func<vector,double> φ, /* objective function */

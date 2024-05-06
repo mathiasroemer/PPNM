@@ -1,0 +1,13 @@
+\
+set terminal svg size 800,500 background "white" ;\
+set out "Out.data.svg" ;\
+set key left ;\
+set xlabel "x" ;\
+set ylabel "y" ;\
+set tics out ;\
+set grid ;\
+set title "Network vs training data" ;\
+plot [-1:1]\
+"Out.data.txt" index 0 using 1:2 with lines title "Linear interpolation of network values" \
+,"Out.data.txt" index 1 using 1:2 with points pointtype 6 lc rgb "red" title "Training points" ;\
+
