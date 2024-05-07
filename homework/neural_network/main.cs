@@ -5,6 +5,9 @@ public class main{
 	public class ann{
 	   public int n; /* number of hidden neurons */
 	   public Func<double,double> f = x => x*Exp(-x*x); /* activation function */
+	   public Func<double, double> f_derivative = x => (1.0-2.0*x*x)*Exp(-x*x);
+	   public Func<double, double> f_second_derivative = x => 2.0*Exp(-x*x)*x*(2.0*x*x-3.0);
+	   public Func<double, double> f_anti_derivative = x => -Exp(-x*x)/2.0;
 	   public vector p; /* network parameters */
 	   public int steps;
 	   public ann(int n){
@@ -24,6 +27,49 @@ public class main{
 			result += f((x-p[i])/p[i+1])*p[i+2];
 		}
 		return result;  
+	   }
+	   public double response_derivative(double x, vector p=null){
+	   	if (p==null) p=this.p;
+
+		//F_p(x) = Sum_i f((x-a_i)/b_i) * w_i
+		//-> d/dx F_p(x) = Sum_i * f'((x-a_i)/b_i) * (w_i/b_i)
+		
+		double result = 0;
+		for(int i=0;i<p.size;i+=3){
+			result += f_derivative((x-p[i])/p[i+1]) * (p[i+2]/p[i+1]);
+		}
+		return result;
+	   }
+	   public double response_second_derivative(double x, vector p=null){
+	   	if (p==null) p=this.p;
+
+		//d/dx F_p(x) = Sum_i * f'((x-a_i)/b_i) * (w_i/b_i)
+		//-> d^2/dx^2 F_p(x) = Sum_i * f''((x-_ai)/b_i) * (w_i/(b_i^2))
+
+		double result = 0;
+		for(int i=0;i<p.size;i+=3){
+			result += f_second_derivative((x-p[i])/p[i+1]) * (p[i+2]/(p[i+1]*p[i+1]));
+		}
+		return result;
+	   }
+	   public double response_anti_derivative(double x, vector p=null){
+	   	if (p==null) p=this.p;
+
+		//F_p(x) = Sum_i f((x-a_i)/b_i) * w_i
+		//int F_p(x) dx = int Sum_i f((x-a_i)/b_i) * w_i dx
+		// = Sum_i w_i * int f((x-a_i)/b_i) dx
+		// = Sum_i w_i * int (x-a_i)/b_i)*Exp(-(x-a_i)/b_i)*(x-a_i)/b_i)) dx
+		// y=(x-a_i)/b_i, dy/dx = 1/b_i -> dx = dy*b_i
+		// -> = Sum_i w_i * b_i * int y*Exp(-y*y) dy
+		// = Sum_i w_i * b_i * (-Exp(-y*y)/2)
+		// = Sum_i w_i * b_i * (-Exp(-(x-a_i)/b_i * (x-a_i)/b_i)/2)
+
+		double result = 0;
+		for(int i=0;i<p.size;i+=3){
+			result += p[i+1] * p[i+2] * f_anti_derivative((x-p[i])/p[i+1]);
+		}
+		return result;
+
 	   }
 	   public void train(vector x,vector y){
 	   /* train the network to interpolate the given table {x,y} */
@@ -45,8 +91,9 @@ public class main{
 	public static int Main(){
 		System.Console.WriteLine("Part A:\n");
 		System.Console.WriteLine("First we choose the training function to be Cos(5x-1)*Exp(-x*x)");
-		Func<double,double> training_func = x => Math.Cos(5*x-1)*Math.Exp(-x*x);
-		//Func<double,double> training_func = x => Pow(x,2);
+		Func<double,double> training_func = x => Cos(5*x-1)*Exp(-x*x);
+		Func<double,double> training_func_derivative = x => Exp(-x*x) * (-5*Sin(5*x - 1) - 2*x*Cos(5*x - 1)); 
+		Func<double,double> training_func_second_derivative = x => Exp(-x*x) * ((4*x*x - 27)*Cos(5*x-1)+20*x*Sin(5*x-1)); 
 
 		int NPoints = 100;
 		int NNeurons = 3;
@@ -79,7 +126,7 @@ public class main{
 		System.Console.Error.WriteLine("\n");
 
 		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
-			System.Console.Error.WriteLine($"{i} {nn.response(i)}");
+			System.Console.Error.WriteLine($"{i} {nn.response(i)} {training_func(i)}");
 		}
 
 		System.Console.Error.WriteLine("\n");
@@ -87,6 +134,27 @@ public class main{
 		for(int i=0;i<xs.size;i++){
 			System.Console.Error.WriteLine($"{xs[i]} {ys[i]}");
 		}
+
+		System.Console.Error.WriteLine("\n");
+
+		System.Console.WriteLine("\nWe then try to calculate the first, second and anti derivative of the training function using the network.");
+		
+		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
+			System.Console.Error.WriteLine($"{i} {nn.response_derivative(i)} {training_func_derivative(i)}");
+		}
+
+		System.Console.Error.WriteLine("\n");
+
+		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
+			System.Console.Error.WriteLine($"{i} {nn.response_second_derivative(i)} {training_func_second_derivative(i)}");
+		}
+
+		System.Console.Error.WriteLine("\n");
+
+		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
+			System.Console.Error.WriteLine($"{i} {nn.response_anti_derivative(i)-nn.response_anti_derivative(-1.0)} {integration.integrate(training_func,-1.0,i).Item1}");
+		}
+
 		return 0;
 	}
 }
