@@ -137,7 +137,8 @@ public class main{
 
 		System.Console.Error.WriteLine("\n");
 
-		System.Console.WriteLine("\nWe then try to calculate the first, second and anti derivative of the training function using the network.");
+		System.Console.WriteLine("\nPart B:\n");
+		System.Console.WriteLine("We then try to calculate the first, second and anti derivative of the training function using the network.");
 		
 		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
 			System.Console.Error.WriteLine($"{i} {nn.response_derivative(i)} {training_func_derivative(i)}");

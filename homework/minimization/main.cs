@@ -72,14 +72,16 @@ public class main{
 		int[] startXRbv = {2,3,-3,4,-10};
 		int[] startYRbv = {2,3,3,-3,10};
 		
+		int maxSteps = 0;
 		for(int i=0; i<startXRbv.Length;i++) {
 			vector start = new vector(startXRbv[i],startYRbv[i]);
 	
 			(vector newt, int steps) = newton(RbvFunc, start);
 			
 			newt.print($"Start guess: ({startXRbv[i]}, {startYRbv[i]}), Global minimum found after {steps} steps:\n");
+			if(steps>maxSteps) maxSteps = steps;
 		}
-		Console.WriteLine("\nWe see that the minimum is closely around the provided minimum at (a,a^2) given by the wikipedia and that the algorithm stops after 1000 steps in case the convergence criterion cannot be reached.");
+		Console.WriteLine($"\nWe see that the minimum is closely around the provided minimum at (a,a^2) given by the wikipedia and that the algorithm stops after {maxSteps} steps in case the convergence criterion cannot be reached.");
 		Console.WriteLine("\n");
 		Console.WriteLine("We now want to use Newton's method with a numerical gradient to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2");
 		
@@ -110,6 +112,57 @@ public class main{
 		Console.WriteLine("Which are all in agreement with the minima given by the wikipedia.");
 
 
+		Console.WriteLine("\nPart B:\n");
+		Console.WriteLine("We want to fit the Higgs Boson data to the Breit-Wigner function\n");
+		var energies = new genlist<double>();
+		var signals = new genlist<double>();
+		var errors  = new genlist<double>();
+		var separators = new char[] {' ','\t'};
+		var options = StringSplitOptions.RemoveEmptyEntries;
+		do{
+			string line=Console.In.ReadLine();
+			if(line==null)break;
+			string[] words=line.Split(separators,options);
+			energies.add(double.Parse(words[0]));
+			signals.add(double.Parse(words[1]));
+			errors.add(double.Parse(words[2]));
+		}while(true);
+	
+		Func<double,vector,double> Breit_Wigner = delegate(double energy, vector param) {
+			double E = energy;
+			double m = param[0];
+			double G = param[1];
+			double A = param[2];
+			return A/(Pow(E-m,2)+Pow(G,2.0)/4.0);
+		};
+
+		Func<vector,double> deviation_func = delegate(vector param) {
+			double sum = 0.0;
+			for(int i=0;i<energies.size;i++){
+				double Ei = energies[i];
+				double si = signals[i];
+				double dsi = errors[i];
+
+				sum += Pow((Breit_Wigner(Ei,param)-si)/dsi,2.0);
+			}
+			return sum;
+		};
+		
+		vector BW_start = new vector(126,2,5.5); //mass, width, scale-factor
+
+		(vector BW_result, int BW_steps) = newton(deviation_func,BW_start,0.00001);
+	
+		BW_start.print("Start parameters:");
+		Console.WriteLine("(Should be a fair guess looking at the data)\n");
+		Console.WriteLine($"After {BW_steps} minimization steps we find the final parameters:");
+		BW_result.print();
+		
+		Console.WriteLine($"\nWe find a mass of {BW_result[0]:F2} GeV with a resonance width of {BW_result[1]:F2} and a scale factor of {BW_result[2]:F2}");
+
+		for(double i=91;i<=170;i+=1.0/8){
+			Console.Error.WriteLine($"{i} {Breit_Wigner(i,BW_result)}");
+		}
+	
 		return 0;
 	}
 }

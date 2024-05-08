@@ -1,0 +1,14 @@
+\
+set terminal svg size 1200,700 background "white" ;\
+set out "Out.Higgs.svg" ;\
+unset key ;\
+set key right top ;\
+set xlabel "Energy [GeV]" ;\
+set ylabel "Signal [Certain units]" ;\
+set tics out ;\
+set grid ;\
+set title "Higgs boson data fitted to the Breit-Wigner function" ;\
+plot [90:170] \
+"higgs.data.txt" with errorbars pointtype 6 lc rgb "red" title "Data" \
+,"Out.data.txt" index 0 using 1:2 with lines lt 8 lw 2 dashtype 2 title "Breit-Wigner fit" ;\
+

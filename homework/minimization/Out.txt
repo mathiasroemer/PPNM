@@ -42,3 +42,15 @@ Result after 9 steps:
       3.58      -1.85 
 
 Which are all in agreement with the minima given by the wikipedia.
+
+Part B:
+
+We want to fit the Higgs Boson data to the Breit-Wigner function
+
+Start parameters:       126          2        5.5 
+(Should be a fair guess looking at the data)
+
+After 10 minimization steps we find the final parameters:
+       126       2.09       9.88 
+
+We find a mass of 125.97 GeV with a resonance width of 2.09 and a scale factor of 9.88

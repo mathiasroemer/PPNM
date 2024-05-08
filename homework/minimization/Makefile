@@ -6,39 +6,29 @@ MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(CODE)
 TIME = time --output=$@ --append --format "%e %U"
 
-default : Out.txt
+default : Out.txt Out.Higgs.svg
 
-#Out.txt Out.data.txt : main.exe
-#	mono $< 1>Out.txt 2>Out.data.txt
+Out.txt Out.data.txt : main.exe higgs.data.txt
+	mono $< < higgs.data.txt 1> Out.txt 2> Out.data.txt
 
-Out.txt : main.exe
-	mono $< > $@
 
-#Out.aoc.svg : Out.data.txt 
-#	echo '\
-	set terminal svg size 1200,500 background "white" ;\
+Out.Higgs.svg : higgs.data.txt Out.data.txt
+	echo '\
+	set terminal svg size 1200,700 background "white" ;\
 	set out "$@" ;\
-	set key left ;\
-	set xlabel "N" ;\
-	set ylabel "Area" ;\
+	unset key ;\
+	set key right top ;\
+	set xlabel "Energy [GeV]" ;\
+	set ylabel "Signal [Certain units]" ;\
 	set tics out ;\
 	set grid ;\
-	set title "Area of unit circle" ;\
-	set multiplot layout 1,2 rowsfirst;\
-	f(x)=1/sqrt(x);\
-	plot \
-	"$<" index 0 using 1:2 with points pointtype 6 title "Area with N points" ;\
-	set ylabel "Error" ;\
-	set title "Error of area of unit circle" ;\
-	plot \
-	f(x) title "1/Sqrt(x)" \
-	,"$<" index 0 using 1:3 with points pointtype 6 title "Estimated error" \
-	,"$<" index 0 using 1:4 with points pointtype 2 title "Exact error" ;\
+	set title "Higgs boson data fitted to the Breit-Wigner function" ;\
+	plot [90:170] \
+	"$<" with errorbars pointtype 6 lc rgb "red" title "Data" \
+	,"Out.data.txt" index 0 using 1:2 with lines lt 8 lw 2 dashtype 2 title "Breit-Wigner fit" ;\
 	' | tee log.gpi | gnuplot	
 
-
-
-matrix.dll : ../linear_equations/main.cs $(libs)/matrix/matrix.cs $(libs)/matrix/vector.cs ; $(MKLIB)
+matrix.dll : ../linear_equations/main.cs $(libs)/matrix/matrix.cs $(libs)/matrix/vector.cs $(libs)/genlist.cs ; $(MKLIB)
 
 main.exe : main.cs matrix.dll ; $(MKEXE)
 
