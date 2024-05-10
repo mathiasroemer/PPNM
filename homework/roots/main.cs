@@ -87,7 +87,9 @@ public class main{
 		}
 
 		Console.Write("\n");
-		Console.WriteLine("Which are all in agreement with the minima given by the wikipedia.");
+		Console.WriteLine("Which are all in agreement with the minima given by the wikipedia.\n");
+
+		Console.WriteLine("Part B:\n");
 
 		return 0;
 	}

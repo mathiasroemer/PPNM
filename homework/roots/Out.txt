@@ -32,3 +32,6 @@ Result:
       3.58      -1.85 
 
 Which are all in agreement with the minima given by the wikipedia.
+
+Part B:
+

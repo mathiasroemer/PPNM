@@ -1,12 +1,13 @@
 \
 	set terminal svg background "white" ;\
-	set out "Out.LinSpline.svg" ;\
+	set out "Out.QSpline.svg" ;\
 	set xlabel "x";\
 	set ylabel "y";\
 	set grid ;\
-	set title "Linear interpolation of Cos(x)";\
-	plot "OutLinSpline.txt" index 0 using 1:2 pointtype 6 title "Data" \
-	,"OutLinSpline.txt" index 1 using 1:2 with lines title "Function [Cos(x)]" \
-	,"OutLinSpline.txt" index 2 using 1:2 pointtype 1 title "Linear interpolation" \
-	,"OutLinSpline.txt" index 3 using 1:2 pointtype 6 ps 0.5 title "Integral [Sin(x) ?]" \
+	set title "Quadratic interpolation of Sin(x)";\
+	plot "OutQSpline.txt" index 0 using 1:2 pointtype 6 title "Data" \
+	,"OutQSpline.txt" index 1 using 1:2 with lines title "Function [Sin(x)]" \
+	,"OutQSpline.txt" index 2 using 1:2 pointtype 1 title "Quadratic interpolation" \
+	,"OutQSpline.txt" index 3 using 1:2 pointtype 6 ps 0.5 lc rgb "red" title "Derivative [Cos(x) ?]" \
+	,"OutQSpline.txt" index 4 using 1:2 pointtype 6 ps 0.5 lc rgb "black" title "Integral [-Cos(x) ?]" ;\
 

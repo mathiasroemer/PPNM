@@ -37,6 +37,8 @@ public class linspline {
 		double anew = (y[i+1]-y[i])/(x[i+1]-x[i]);
 		double bnew = y[i]-anew*x[i];
 		intOut -= (1.0/2)*(x[i]-z)*(anew*(x[i]+z)+2*bnew);
+
+
 		return intOut;
 	}
 	
