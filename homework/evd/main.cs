@@ -1,65 +1,15 @@
 using System;
 using static System.Math;
 
-public static class jacobi {
-	public static void timesJ(matrix A, int p, int q, double theta){
-		double c=Cos(theta),s=Sin(theta);
-		for(int i=0;i<A.size1;i++){
-			double aip=A[i,p],aiq=A[i,q];
-			A[i,p]=c*aip-s*aiq;
-			A[i,q]=s*aip+c*aiq;
-		}
-	}
-	public static void Jtimes(matrix A, int p, int q, double theta){
-		double c=Cos(theta),s=Sin(theta);
-		for(int j=0;j<A.size1;j++){
-			double apj=A[p,j],aqj=A[q,j];
-			A[p,j]= c*apj+s*aqj;
-			A[q,j]=-s*apj+c*aqj;
-		}
-	}
-	public static (vector,matrix) cyclic(matrix M){
-		matrix A=M.copy();
-		matrix V=matrix.id(M.size1);
-		vector w=new vector(M.size1);
-		
-		int n = A.size1;
-
-		/* run Jacobi rotations on A and update V */
-		bool changed;
-		do{
-			changed=false;
-			for(int p=0;p<n-1;p++)
-			for(int q=p+1;q<n;q++){
-				double apq=A[p,q], app=A[p,p], aqq=A[q,q];
-				double theta=0.5*Atan2(2*apq,aqq-app);
-				double c=Cos(theta),s=Sin(theta);
-				double new_app=c*c*app-2*s*c*apq+s*s*aqq;
-				double new_aqq=s*s*app+2*s*c*apq+c*c*aqq;
-				if(new_app!=app || new_aqq!=aqq) // do rotation
-					{
-					changed=true;
-					timesJ(A,p,q, theta); // A←A*J 
-					Jtimes(A,p,q,-theta); // A←JT*A 
-					timesJ(V,p,q, theta); // V←V*J
-					}
-			}
-		}while(changed);
-		
-		/* copy diagonal elements into w */
-		for(int i=0;i<n;i++){
-			w[i]=A[i,i];
-		}
-		return (w,V);
-	}
-	
-	public static int Main(){
+public static class main {
+	public static int Main(string[] args){
+		System.Console.WriteLine("Part A:\n");
 		var rnd = new Random(321);
 		var A = matrix.randomSym(4,rnd);
 		A.print("A (Random symmetric matrix):");
 		System.Console.WriteLine("");
 
-		var eig = cyclic(A);
+		var eig = jacobi.cyclic(A);
 		var w = eig.Item1;
 		var V = eig.Item2;
 		
@@ -91,6 +41,51 @@ public static class jacobi {
 		var VVT = V * V.T;
 		VVT.print("V * V.T:");
 		System.Console.WriteLine("We see that it is also equal to the identity matrix.\n");
+		
+		System.Console.WriteLine("Part B:\n");
+		double rmax = 0;
+		double dr = 0;
+		foreach(var arg in args){
+			var words = arg.Split(':');
+			if(words[0]=="-rmax"){
+				rmax = double.Parse(words[1]);
+			}
+			else if(words[0]=="-dr"){
+				dr = double.Parse(words[1]);
+			}
+		}
+		System.Console.Write("Chosen rmax: ");
+		System.Console.WriteLine(rmax);
+		System.Console.Write("Chosen dr: ");
+		System.Console.WriteLine(dr);
+		
+		System.Console.WriteLine("\nWe first build the Hamiltonian matrix");
+
+		int npoints = (int)(rmax/dr)-1;
+		vector r = new vector(npoints);
+		for(int i=0;i<npoints;i++)r[i]=dr*(i+1);
+		matrix H = new matrix(npoints,npoints);
+		for(int i=0;i<npoints-1;i++){
+		   H[i,i]  =-2*(-0.5/dr/dr);
+		   H[i,i+1]= 1*(-0.5/dr/dr);
+		   H[i+1,i]= 1*(-0.5/dr/dr);
+		  }
+		H[npoints-1,npoints-1]=-2*(-0.5/dr/dr);
+		for(int i=0;i<npoints;i++)H[i,i]+=-1/r[i];
+		
+		System.Console.WriteLine("Then we use our Jacobi routine to obtain eigenvalues and eigenvectors\n");
+		var H_eig = jacobi.cyclic(H);
+		var H_w = H_eig.Item1;
+		var H_V = H_eig.Item2;
+		
+		H_w.print("Eigenvalues of Hamiltonian matrix:");
+
+		double eps_0 = H_w[0];
+		System.Console.WriteLine($"We know that the eigenvalue diagonal matrix will be arranged in accending order meaning that index 0,0 will be the lowest eigenvalue for the Hamiltonian matrix with max radius {rmax:f2} and step {dr:f2} Bohr radii: {eps_0:f3} Hartree\n");
+		
+		System.Console.WriteLine("We can now try to vary rmax and dr investigating the convergence of the lowest eigenvalue\n");
+		System.Console.WriteLine($"By varying rmax and dr we can also plot the 2 lowest eigen-functions corresponding to that rmax and dr and compare them to the analytic reduced radial wave function");
+		
 		
 		return 0;
 	}
