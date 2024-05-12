@@ -15,7 +15,7 @@ Out.egfnc.svg : Out.egfnc.data
 	unset key ;\
 	set key right top ;\
 	set xlabel "r [Bohr radius]" ;\
-	set ylabel "Probability" ;\
+	set ylabel "Probability (|f|^2)" ;\
 	set tics out ;\
 	set grid ;\
 	set title "Two lowest eigen-functions at rmax = 15 and dr = 0.1 vs analytic function" ;\
