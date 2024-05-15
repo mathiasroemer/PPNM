@@ -1,7 +1,7 @@
 using System;
 using static System.Math;
 
-public class main{
+public class ODE{
 	public static (vector,vector) rkstep12(
 		Func<double,vector,vector> f,/* the f from dy/dx=f(x,y) */
 		double x,                    /* the current value of the variable */

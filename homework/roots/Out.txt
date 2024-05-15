@@ -35,3 +35,8 @@ Which are all in agreement with the minima given by the wikipedia.
 
 Part B:
 
+We now want to find the lowest root of M(E) = F_E(rmax) where we find F_E by using our ODE solver on the s-wave radial Schrödinger equation for hydrogen: -(1/2)f'' - (1/r)f = Ef
+
+We first we guess that the root energy is at -5 (a better guess might be -1/2 but we don't know that yet)
+But then after using our routine find that the lowest root energy E_0 is -0.502
+We then plot the result wavefunction for this found root energy together with the exact result wave function

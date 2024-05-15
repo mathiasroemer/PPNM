@@ -1,0 +1,26 @@
+\
+set terminal svg size 1200,700 background "white" ;\
+set out "Out.convergence.svg" ;\
+unset key ;\
+set key right top ;\
+set xlabel "rmin [Bohr radius]" ;\
+set ylabel "Energy E_0 [Hartree]" ;\
+set tics out ;\
+set grid ;\
+set title "Energy convergence with varying rmin, rmax = 8, acc = 0.01 and eps = 0.01" ;\
+set multiplot layout 2,2 rowsfirst ;\
+plot \
+"Out.conv.rmin.data" using 1:5 with points pointtype 6 notitle ;\
+set xlabel "rmax [Bohr radius]" ;\
+set title "Energy convergence with rmin = 0.1, varying rmax, acc = 0.01 and eps = 0.01" ;\
+plot \
+"Out.conv.rmax.data" using 2:5 with points pointtype 6 notitle ;\
+set xlabel "acc" ;\
+set title "Energy convergence with rmin = 0.1, rmax = 8, varying acc and eps = 0.01" ;\
+plot \
+"Out.conv.acc.data" using 3:5 with points pointtype 6 notitle ;\
+set xlabel "eps" ;\
+set title "Energy convergence with rmin = 0.1, rmax = 8, acc = 0.01 and varying eps" ;\
+plot \
+"Out.conv.eps.data" using 4:5 with points pointtype 6 notitle ;\
+
