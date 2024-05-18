@@ -102,15 +102,15 @@ public class qspline {
 
 
 public static int Main(){
-		System.Console.Out.WriteLine("asd");
-		
 		Random rnd = new Random(123);
 		vector xs = new vector(11);	
 		vector ys = new vector(11);
 	
+		Func<double,double> test_function = x => Sin(x);
+		
 		for(int i=0;i<xs.size;i++){
 			xs[i]=i;
-			ys[i]=Sin(xs[i]);
+			ys[i]=test_function(xs[i]);
 			Console.WriteLine($"{xs[i]} {ys[i]}");
 		}
 		
@@ -125,7 +125,7 @@ public static int Main(){
 		//Sin output
 		for(int i=0;i<numPoints;i++){
 			double usex = start + i*step;
-			System.Console.Out.WriteLine($"{usex} {Sin(usex)}");
+			System.Console.Out.WriteLine($"{usex} {test_function(usex)}");
 		}
 
 		System.Console.Out.WriteLine("\n");
