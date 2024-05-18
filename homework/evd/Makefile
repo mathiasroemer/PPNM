@@ -6,7 +6,28 @@ MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(CODE)
 TIME = time --output=$@ --append --format "%e %U"
 
-default : Out.txt Out.convergence.svg Out.egfnc.svg
+default : Out.txt Out.convergence.svg Out.egfnc.svg Out.diagonalization_time.svg
+
+Out.diagonalization_time.svg : Out.times.txt
+	echo '\
+	set terminal svg background "white" ;\
+	set out "$@" ;\
+	unset key ;\
+	set key right top ;\
+	set xlabel "N" ;\
+	set ylabel "Time" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Measured time to diagonalize matrix of size N" ;\
+	a=0.001 ;\
+	b=0.2 ;\
+	f(x) = a*x**3+b ;\
+	fit f(x) "$<" via a,b ;\
+	plot \
+	"$<" index 0 using 1:2 with points pointtype 6 notitle \
+	, f(x) title "Fit to f(x) = a*x^3 + b" ;\
+	' | tee log.gpi | gnuplot	
+
 
 Out.egfnc.svg : Out.egfnc.data
 	echo '\
@@ -46,7 +67,16 @@ Out.convergence.svg : Out.rmax.data Out.dr.data
 	"Out.dr.data" using 2:3 with points pointtype 6 notitle ;\
 	' | tee log.gpi | gnuplot	
 
-
+Ns := $(shell seq 20 10 250)
+Out.times.txt: time.exe
+	for N in $(Ns); do \
+		sleep 0.1s ; \
+		time -ao log.$$N -f "$$N %e" mono $< -N:$$N & \
+		sleep 0.1s ; \
+	done; wait
+	> $@
+	for N in $(Ns); do cat log.$$N >> $@; done
+	$(RM) log*
 
 Out.txt: main.exe
 	mono $< > $@ -rmax:10 -dr:0.3
@@ -65,9 +95,10 @@ Out.rmax.data : hydrogen.exe
 	done
 
 main.exe : main.cs matrix.dll ; $(MKEXE)
+time.exe : time.cs matrix.dll ; $(MKEXE)
 hydrogen.exe : hydrogen.cs matrix.dll ; $(MKEXE)
 
 matrix.dll : $(libs)/matrix.cs $(libs)/vector.cs jacobi.cs; $(MKLIB)
 
 clean:
-	$(RM) *.exe *.dll [Oo]ut* [Ll]og*
+	$(RM) *.exe *.dll [Oo]ut* [Ll]og* fit.log

@@ -84,9 +84,10 @@ public static class main {
 		System.Console.WriteLine($"We know that the eigenvalue diagonal matrix will be arranged in accending order meaning that index 0,0 will be the lowest eigenvalue for the Hamiltonian matrix with max radius {rmax:f2} and step {dr:f2} Bohr radii: {eps_0:f3} Hartree\n");
 		
 		System.Console.WriteLine("We can now try to vary rmax and dr investigating the convergence of the lowest eigenvalue\n");
-		System.Console.WriteLine($"By varying rmax and dr we can also plot the 2 lowest eigen-functions corresponding to that rmax and dr and compare them to the analytic reduced radial wave function");
+		System.Console.WriteLine($"By varying rmax and dr we can also plot the 2 lowest eigen-functions corresponding to that rmax and dr and compare them to the analytic reduced radial wave function\n");
 		
-		
+		System.Console.WriteLine("Part C:\n");
+		System.Console.WriteLine("For part c we choose to look at how the number of operations for matrix diagonalization scales as O(n^3). The data is generated in parallel utilizing shell's background operator &. Afterwards the data is fitted to a function: f(x) = a*x^3 +b");
 		return 0;
 	}
 }

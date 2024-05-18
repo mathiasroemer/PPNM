@@ -1,16 +1,18 @@
 \
 set terminal svg background "white" ;\
-set out "Out.egfnc.svg" ;\
+set out "Out.diagonalization_time.svg" ;\
 unset key ;\
 set key right top ;\
-set xlabel "r [Bohr radius]" ;\
-set ylabel "Probability (|f|^2)" ;\
+set xlabel "N" ;\
+set ylabel "Time" ;\
 set tics out ;\
 set grid ;\
-set title "Two lowest eigen-functions at rmax = 15 and dr = 0.1 vs analytic function" ;\
+set title "Measured time to diagonalize matrix of size N" ;\
+a=0.001 ;\
+b=0.2 ;\
+f(x) = a*x**3+b ;\
+fit f(x) "Out.times.txt" via a,b ;\
 plot \
-"Out.egfnc.data" index 0 using ($1):($2)**2 with points pointtype 6 title "Lowest eigenvalue function" \
-,"Out.egfnc.data" index 1 using ($1):($2)**2 with points pointtype 6 title "Second lowest eigenvalue function" \
-, (x*(2*exp(-x)))**2 with lines title "n = 1 reduced radial wave function" \
-, (x*((1/sqrt(2))*(1-x/2)*exp(-x/2)))**2 with lines title "n = 2 reduced radial wave function" ;\
+"Out.times.txt" index 0 using 1:2 with points pointtype 6 notitle \
+, f(x) title "Fit to f(x) = a*x^3 + b" ;\
 
