@@ -144,7 +144,44 @@ public class main{
 			double x = (i*EndPoint)/NPoints;
 			System.Console.Error.WriteLine($"{x} {interp3(x)[0]} {interp3(x)[1]}");	
 		}
+	
+		System.Console.Error.WriteLine("\n");
+
+		System.Console.WriteLine("Part C:\n");
 		
+		System.Console.WriteLine("We at last want to use the routines on the three-body problem using the initial configuration given by the wikipedia for a stable system with m1=m2=m3=G=1");
+
+		Func<double, vector, vector> three_body = delegate(double x, vector y){
+			var result = y.copy(); 
+			for (int i=0;i<3;i++){
+
+				result[4*i] = y[4*i+2];
+				result[4*i+1] = y[4*i+3];
+				result[4*i+2] = 0;
+			       	result[4*i+3] = 0;
+				
+				for (int j=0;j<3;j++){
+					if (i != j) {
+						double factor = Pow(Sqrt((Pow((y[4*i]-y[4*j]),2) + Pow((y[4*i+1]-y[4*j+1]),2))),3);
+
+						result[4*i+2] += (y[4*j]-y[4*i])/factor;
+						result[4*i+3] += (y[4*j+1]-y[4*i+1])/factor;
+					}
+				}
+			}
+			return result; //(x_i,y_i,vx_i,vy_i)
+
+	
+		};
+		
+		vector initial_config = new vector(-0.97000436, 0.24308753,0.4662036850, 0.4323657300,0, 0,-0.93240737, -0.86473146, 0.97000436, -0.24308753, 0.4662036850, 0.4323657300);
+		
+		var (xlist_tb,ylist_tb) = driver(three_body,(0.0,2.5),initial_config);
+
+		for(int i=0;i<xlist_tb.size;i++) {
+			System.Console.Error.WriteLine($"{xlist_tb[i]} {ylist_tb[i][0]} {ylist_tb[i][1]} {ylist_tb[i][4]} {ylist_tb[i][5]} {ylist_tb[i][8]} {ylist_tb[i][9]}");
+		}
+		System.Console.Error.WriteLine("\n");
 		return 0;
 	}
 }

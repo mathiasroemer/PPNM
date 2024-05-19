@@ -1,0 +1,13 @@
+Part A:
+
+We first test the routines on u''=-u
+
+We then try to solve the Lotka-Volterra system
+
+Part B:
+
+We now want to use the routines on u'' + u= 1 + epsilon * u^2
+
+Part C:
+
+We at last want to use the routines on the three-body problem using the initial configuration given by the wikipedia for a stable system with m1=m2=m3=G=1
