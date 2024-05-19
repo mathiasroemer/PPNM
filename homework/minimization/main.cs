@@ -14,6 +14,24 @@ public class main{
 		return gφ;
 	}
 
+	public static vector gradient_central(Func<vector,double> phi,vector x){
+		vector gphi = new vector(x.size);
+		vector xp = x.copy();
+		vector xm = x.copy();
+
+		for(int i=0;i<x.size;i++){
+			double dx=Max(Abs(x[i]),1)*Pow(2,-26);
+			xp[i] += dx;
+			xm[i] -= dx;
+
+			gphi[i] = (phi(xp)-phi(xm))/(2*dx);
+
+			xp[i] -= dx;
+			xm[i] += dx;
+		}
+		return gphi;
+	}
+
 	public static matrix hessian(Func<vector,double> φ,vector x){
 		matrix H=new matrix(x.size);
 		vector gφx=gradient(φ,x);
@@ -28,18 +46,79 @@ public class main{
 		return (H+H.T)/2; // you think?
 	}
 
+	public static matrix hessian_central(Func<vector,double> phi,vector x){
+		matrix H=new matrix(x.size);
+		vector gphix=gradient_central(phi,x);
+		double phix = phi(x);
+	
+		vector xpp = x.copy();
+		vector xmm = x.copy();
+		vector xmp = x.copy();
+		vector xpm = x.copy();
+
+		for(int j=0;j<x.size;j++){
+			for(int i=0;i<x.size;i++) { 
+				double dxj=Max(Abs(x[j]),1)*Pow(2,-13); /* for numerical gradient */
+				double dxi=Max(Abs(x[i]),1)*Pow(2,-13);
+		
+				xpp[i] += dxi;
+				xpp[j] += dxj;
+				
+				xpm[i] += dxi;
+				xpm[j] -= dxj;
+
+				xmp[i] -= dxi;
+				xmp[j] += dxj;
+
+				xmm[i] -= dxi;
+				xmm[j] -= dxj;	
+
+				H[i,j] = (phi(xpp)-phi(xpm)-phi(xmp)+phi(xmm))/(4.0*dxi*dxj);
+
+				xpp[i] -= dxi;
+				xpp[j] -= dxj;
+				
+				xpm[i] -= dxi;
+				xpm[j] += dxj;
+
+				xmp[i] += dxi;
+				xmp[j] -= dxj;
+
+				xmm[i] += dxi;
+				xmm[j] += dxj;
+
+			}
+		}
+		//return H;
+		return (H+H.T)/2; // you think?
+	}
+
 	public static (vector,int) newton(
 		Func<vector,double> φ, /* objective function */
 		vector x,              /* starting point */
+		bool central=false,
 		double acc=1e-3        /* accuracy goal, on exit |∇φ| should be < acc */
 	){
 		int NSteps = 0;
 		int maxsteps = 1000;
 		do{ /* Newton's iterations */
 			NSteps++;
-			var gφ = gradient(φ,x);
+			vector gφ = new vector(x.size);
+			if(central==true){
+				gφ = gradient_central(φ,x);
+			}
+			else {
+				gφ = gradient(φ,x);
+			}
 			if(gφ.norm() < acc) break; /* job done */
-			var H = hessian(φ,x);
+			matrix H=new matrix(x.size);
+			if(central==true) {
+				H = hessian_central(φ,x);	
+			}
+			else {
+				H = hessian(φ,x);
+			
+			}
 			//var QRH = givensQR(H);   /* QR decomposition */
 			//var dx = QRH.solve(-∇φ); /* Newton's step */
 			var QRH = QRGS.decomp(H);
@@ -81,7 +160,7 @@ public class main{
 			newt.print($"Start guess: ({startXRbv[i]}, {startYRbv[i]}), Global minimum found after {steps} steps:\n");
 			if(steps>maxSteps) maxSteps = steps;
 		}
-		Console.WriteLine($"\nWe see that the minimum is closely around the provided minimum at (a,a^2) given by the wikipedia and that the algorithm stops after {maxSteps} steps in case the convergence criterion cannot be reached.");
+		Console.WriteLine($"\nWe see that the minimum is closely around the provided minimum at (a,a^2) = (1,1) given by the wikipedia and that the algorithm stops after {maxSteps} steps in case the convergence criterion cannot be reached.");
 		Console.WriteLine("\n");
 		Console.WriteLine("We now want to use Newton's method with a numerical gradient to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2");
 		
@@ -150,7 +229,7 @@ public class main{
 		
 		vector BW_start = new vector(126,2,5.5); //mass, width, scale-factor
 
-		(vector BW_result, int BW_steps) = newton(deviation_func,BW_start,0.00001);
+		(vector BW_result, int BW_steps) = newton(deviation_func,BW_start,false,0.00001);
 	
 		BW_start.print("Start parameters:");
 		Console.WriteLine("(Should be a fair guess looking at the data)\n");
@@ -162,7 +241,43 @@ public class main{
 		for(double i=91;i<=170;i+=1.0/8){
 			Console.Error.WriteLine($"{i} {Breit_Wigner(i,BW_result)}");
 		}
+		
+		Console.WriteLine("\nPart C:\n");
+		Console.WriteLine("We now do the same as for Part A, just with a central finite difference instead of a forward difference");
+
+		Console.WriteLine("The Rosenbrock's valley function is: f(x,y) = (1-x)^2 + 100*(y-x^2)^2\n");
+
+		for(int i=0; i<startXRbv.Length;i++) {
+			vector start = new vector(startXRbv[i],startYRbv[i]);
 	
+			(vector newt, int steps) = newton(RbvFunc, start,true);
+			
+			newt.print($"Start guess: ({startXRbv[i]}, {startYRbv[i]}), Global minimum found after {steps} steps:\n");
+			if(steps>maxSteps) maxSteps = steps;
+		}
+		Console.WriteLine($"\nWe see that the minimum is closely around the provided minimum at (a,a^2) = (1,1) given by the wikipedia and that it this time got the minimum of all the start guesses.");
+		Console.WriteLine("\n");
+		Console.WriteLine("We now want to use Newton's method with a central gradient to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2");
+		
+		Console.WriteLine("We try now four different intial guesses and get the results:");
+
+		for(int i = 0; i<startXHB.Length; i++){
+			Console.Write("\n");
+			Console.WriteLine($"Initial guess: ({startXHB[i]}, {startYHB[i]})");
+
+			vector startGuess = new vector(startXHB[i],startYHB[i]);
+			
+			(vector result, int steps) = newton(HimmelFunc,startGuess,true);
+			
+			Console.WriteLine($"Result after {steps} steps:");
+
+			result.print("\n");
+		}
+
+		Console.Write("\n");
+		Console.WriteLine("Which are all in agreement with the minima we go from the forward difference.\n");
+		Console.WriteLine("We see that the central finite difference approximations for the derivatives is better than the forward difference approximations since we not get results for all our guesses.");
+
 		return 0;
 	}
 }
