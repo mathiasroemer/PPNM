@@ -97,6 +97,6 @@ Result after 9 steps:
 
       3.58      -1.85 
 
-Which are all in agreement with the minima we go from the forward difference.
+Which are all in agreement with the minima we got from the forward difference.
 
 We see that the central finite difference approximations for the derivatives is better than the forward difference approximations since we not get results for all our guesses.
