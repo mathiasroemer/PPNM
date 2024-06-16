@@ -89,6 +89,24 @@ public class main{
 			Console.Error.WriteLine($"{xlist[i]} {ylist[i][0]}");
 		}
 
-		return 0;
+		Console.WriteLine("\nPart C:");
+
+		Console.WriteLine("We now try to use the Newton's method with quadratic line-search to find the minima of the Himmelblau's function: f(x,y) = (x^2+y-11)^2+(x+y^2-7)^2");
+		for(int i = 0; i<startX.Length; i++){
+			Console.Write("\n");
+			Console.WriteLine($"Initial guess: ({startX[i]}, {startY[i]})");
+			Console.WriteLine("Result:");
+
+			vector startGuess = new vector(startX[i],startY[i]);
+			
+			var result = roots.newtonQuad(GradHimmelFunc,startGuess);
+
+			result.print("\n");
+		}
+	
+		Console.Write("\n");
+		Console.WriteLine("Which are all in agreement with what we found earlier.\n");
+
+	return 0;
 	}
 }
