@@ -72,6 +72,82 @@ public class main{
 		return result;
 	}
 
+	public static (double,double) stratmc(Func<vector,double> f,vector a,vector b,int N,int nmin=100){
+		//if N<nmin return plainmc
+		if (N<nmin) {
+			return plainmc(f,a,b,N);
+		}
+		else {
+			int dim=a.size; double V=1; for(int i=0;i<dim;i++)V*=b[i]-a[i];
+			double sum=0,sum2=0;
+			var sum_right = new vector(dim);
+			var sum2_right = new vector(dim);
+			var n_right = new vector(dim);
+			var sum_left = new vector(dim);
+			var sum2_left = new vector(dim);
+			var n_left = new vector(dim);
+			var x=new vector(dim);
+			var rnd=new Random();
+		
+			//Sample nmin points
+			for(int i=0;i<nmin;i++){
+				for(int k=0;k<dim;k++)x[k]=a[k]+rnd.NextDouble()*(b[k]-a[k]);
+				double fx=f(x); sum+=fx; sum2+=fx*fx;
+				for(int k=0;k<dim;k++) {
+					if(x[k]>(a[k]+b[k])/2.0) {
+						sum_right[k]+=fx;
+						sum2_right[k]+=fx*fx;
+						n_right[k]++;
+					}
+					else {
+						sum_left[k]+=fx;
+						sum2_left[k]+=fx*fx;
+						n_left[k]++;
+					}
+				}
+			}
+			N -= nmin;
+			//Estimate integral and variance
+			double mean=V*(sum/nmin), sigma=V*Sqrt(sum2/nmin-mean*mean)/Sqrt(nmin);
+			
+			//Find dimension with largest sub-variance
+			int maxdim = 0; double maxdiff = 0;
+			for(int k=0;k<dim;k++) {
+				double current_mean_diff = Math.Abs(sum_right[k]/n_right[k]-sum_left[k]/n_left[k]);
+				if(current_mean_diff>maxdiff) {
+					maxdim=k;
+					maxdiff=current_mean_diff;
+				}
+			}
+
+			double varLeft = Math.Sqrt(sum2_left[maxdim]/n_left[maxdim] - Math.Pow(sum_left[maxdim]/n_left[maxdim],2));
+			double varRight = Math.Sqrt(sum2_right[maxdim]/n_right[maxdim] - Math.Pow(sum_right[maxdim]/n_right[maxdim],2));
+
+			vector a2 = a.copy();
+			vector b2 = b.copy();
+
+			//Subdivide volume
+			a2[maxdim] = (a[maxdim]+b[maxdim])/2.0;
+			b2[maxdim] = (a[maxdim]+b[maxdim])/2.0;
+
+			//Divide remaining points
+			int N_left = (int)Math.Round(N*varLeft/(varLeft+varRight));
+			int N_right = N-N_left;
+
+			//Dispatch two recursive calls
+			(double integ_left, double sigma_left) = stratmc(f,a,b2,N_left);
+
+			(double integ_right, double sigma_right) = stratmc(f,a2,b,N_right);
+			
+			//Estimate grand integral and grand error
+			double grandintegral = integ_left+integ_right;
+			double granderror = Math.Sqrt(Math.Pow(sigma_left,2)+Math.Pow(sigma_right,2));
+			
+			//Return
+			return (grandintegral,granderror);
+		}
+	}
+
 	public static int Main(){
 		Console.WriteLine("Part A:\n");
 		
@@ -124,7 +200,14 @@ public class main{
 			var res2 = quasimc(func,start1,end1,N,1);
 			Console.Error.WriteLine($"{N} {Abs(res1.Item1 - Math.PI)} {Abs(res2.Item1 - Math.PI)}");
 		}
-
+		
+		Console.WriteLine("\nPart C:\n");
+		Console.WriteLine("We now implement the recursive stratified sampling method.");
+		
+	
+		int Nstrat = 10000;
+		var resultStrat = stratmc(func,start1,end1,testN);
+		Console.WriteLine($"Using the Recursive Stratified Sampling Monte Carlo Integration we get an area of a unit circle using {Nstrat} points: \n{resultStrat.Item1:F5} +- {resultStrat.Item2:F5}");
 		return 0;
 	}
 }
