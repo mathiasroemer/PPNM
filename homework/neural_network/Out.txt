@@ -21,4 +21,4 @@ We then try to calculate the first, second and anti derivative of the training f
 
 Part C:
 
-We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 1 and y´(0) = 1
+We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 0 and y´(0) = 1

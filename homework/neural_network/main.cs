@@ -180,7 +180,7 @@ public class main{
 
 		System.Console.WriteLine("\nPart C:\n");
 
-		System.Console.WriteLine("We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 1 and y´(0) = 1");
+		System.Console.WriteLine("We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 0 and y´(0) = 1");
 
 		var diffAnn = new ann(NNeurons);
 		
