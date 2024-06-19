@@ -77,7 +77,7 @@ public static class QRGS{
 	System.Console.WriteLine("\nLets check solve:\n");
 	
 	var squareMat = matrix.random(5,5,rnd);
-	var b = vector.random(6,rnd);
+	var b = vector.random(5,rnd);
 
 	squareMat.print("A (Random square matrix):");
 	System.Console.WriteLine("");

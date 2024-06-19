@@ -73,7 +73,6 @@ public class main{
 	   }
 	   public void train(vector x,vector y){
 	   /* train the network to interpolate the given table {x,y} */
-  		int iterations = 0;
 		Func<vector,double> cost_function = delegate(vector param) {
 			double result = 0.0;
 			for(int i=0;i<x.size;i++){
@@ -82,6 +81,29 @@ public class main{
 			
 			double output = result/x.size;
 		
+			return output;
+		};
+		
+		(p, steps) = minimization.newton(cost_function,p);
+	   }
+
+	   public void train_diff_eq(vector x, vector y,Func<vector,double> phi,double a, double b, vector yc, double alpha=1000, double beta=1000) {
+	   /* train the network to interpolate the given table {x,y} */
+		Func<vector,double> cost_function = delegate(vector param) {
+			
+			Func<double,double> phi_integrate = delegate(double k) {
+				
+				Func<double, vector> diff_vec = delegate(double t) {
+					var _temp = new vector(3);
+					_temp[0] = this.response_second_derivative(t,param);
+					_temp[1] = this.response_derivative(t,param);
+					_temp[2] = this.response(t,param);
+					return _temp;
+				};
+				return Math.Pow(phi(diff_vec(k)),2);
+			};
+
+			double output = integration.integrate(phi_integrate,a,b).Item1+alpha*Math.Pow(this.response(yc[0],param)-yc[1],2)+beta*Math.Pow(this.response_derivative(yc[2],param)-yc[3],2);
 			return output;
 		};
 		
@@ -155,6 +177,29 @@ public class main{
 		for(double i=-1.0;i<1.0+1.0/64.0;i+=1.0/64.0){
 			System.Console.Error.WriteLine($"{i} {nn.response_anti_derivative(i)-nn.response_anti_derivative(-1.0)} {integration.integrate(training_func,-1.0,i).Item1}");
 		}
+
+		System.Console.WriteLine("\nPart C:\n");
+
+		System.Console.WriteLine("We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 1 and y´(0) = 1");
+
+		var diffAnn = new ann(NNeurons);
+		
+
+		vector yc_initials = new vector(4);
+		yc_initials[0] = 0.0;
+		yc_initials[1] = 0.0;
+		yc_initials[2] = 0.0;
+		yc_initials[3] = 1.0;
+
+		Func<vector,double> diff_eq = delegate(vector y){return y[0]+5*y[2];};
+		diffAnn.train_diff_eq(null,null,diff_eq,0,2,yc_initials);
+
+		System.Console.Error.WriteLine("\n");
+
+		for(double i=0.0;i<2.0+1.0/64.0;i+=1.0/64.0){
+			System.Console.Error.WriteLine($"{i} {diffAnn.response(i)} {Math.Sin(Math.Sqrt(5)*i)/Math.Sqrt(5)}");
+		}
+
 
 		return 0;
 	}

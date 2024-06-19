@@ -18,3 +18,7 @@ Real value at 0.2: 0.960789439152323
 Part B:
 
 We then try to calculate the first, second and anti derivative of the training function using the network.
+
+Part C:
+
+We now want to make the network approximate the solution of a differential equation. For this we test with y´´ = -5y where y(0) = 1 and y´(0) = 1

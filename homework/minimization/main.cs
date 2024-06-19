@@ -276,7 +276,7 @@ public class main{
 
 		Console.Write("\n");
 		Console.WriteLine("Which are all in agreement with the minima we got from the forward difference.\n");
-		Console.WriteLine("We see that the central finite difference approximations for the derivatives is better than the forward difference approximations since we not get results for all our guesses.");
+		Console.WriteLine("We see that the central finite difference approximations for the derivatives is better than the forward difference approximations since we now get results for all our guesses.");
 
 		return 0;
 	}

@@ -6,7 +6,7 @@ MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(CODE)
 TIME = time --output=$@ --append --format "%e %U"
 
-default : Out.txt Out.AB.svg 
+default : Out.txt Out.AB.svg Out.C.svg
 
 Out.txt Out.data.txt : main.exe
 	mono $< 1> Out.txt 2> Out.data.txt
@@ -40,6 +40,24 @@ Out.AB.svg : Out.data.txt
 	"$<" index 4 using 1:2 with lines lt 8 lw 2 dashtype 2 title "Network" \
 	,"$<" index 4 using 1:3 with lines lt 7 lw 1 dashtype 3 title "Numerical" ;\
 	' | tee log.gpi | gnuplot	
+
+Out.C.svg : Out.data.txt
+	echo '\
+	set terminal svg size 1200,700 background "white" ;\
+	set out "$@" ;\
+	unset key ;\
+	set key right top ;\
+	set xlabel "x" ;\
+	set ylabel "y" ;\
+	set tics out ;\
+	set grid ;\
+	set title "Network ODE y´´ = -5y where y(0)=0, y´(0)=1" ;\
+	set multiplot layout 2,2 rowsfirst ;\
+	plot \
+	"$<" index 5 using 1:2 with lines lt 8 lw 2 dashtype 2 title "Network ODE prediction" \
+	,"$<" index 5 using 1:3 with lines lt 7 lw 1 dashtype 3 title "Analytical solution" ;\
+	' | tee log.gpi | gnuplot	
+
 
 extra.dll : $(libs)/matrix/matrix.cs $(libs)/matrix/vector.cs minimization.cs QRGS.cs integration.cs; $(MKLIB)
 
