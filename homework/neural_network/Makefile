@@ -43,7 +43,7 @@ Out.AB.svg : Out.data.txt
 
 Out.C.svg : Out.data.txt
 	echo '\
-	set terminal svg size 1200,700 background "white" ;\
+	set terminal svg background "white" ;\
 	set out "$@" ;\
 	unset key ;\
 	set key right top ;\
@@ -52,7 +52,6 @@ Out.C.svg : Out.data.txt
 	set tics out ;\
 	set grid ;\
 	set title "Network ODE y´´ = -5y where y(0)=0, y´(0)=1" ;\
-	set multiplot layout 2,2 rowsfirst ;\
 	plot \
 	"$<" index 5 using 1:2 with lines lt 8 lw 2 dashtype 2 title "Network ODE prediction" \
 	,"$<" index 5 using 1:3 with lines lt 7 lw 1 dashtype 3 title "Analytical solution" ;\
