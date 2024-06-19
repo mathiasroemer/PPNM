@@ -1,0 +1,16 @@
+\
+	set terminal svg background "white" ;\
+	set out "Out.CosDerivAndInteg.svg" ;\
+	set key left ;\
+	set key box width -12 ;\
+	set xlabel "x";\
+	set ylabel "y";\
+	set grid ;\
+	set title "Subspline interpolation of Sign(x)";\
+	plot \
+	"Out.Splines.data" index 5 using 1:2 with lines lc rgb "black" title "Function [Cos(x)]" \
+	,"Out.Splines.data" index 6 using 1:2 pointtype 1 title "Subspline interpolation" \
+	,"Out.Splines.data" index 7 using 1:2 pointtype 6 ps 0.5 title "Subspline derivative [-Sin(x) ?]" \
+	,"Out.Splines.data" index 8 using 1:2 pointtype 6 ps 0.5 title "Subspline integral [Sin(x) ?]" \
+	,"Out.Splines.data" index 4 using 1:2 pointtype 7 ps 0.7 lc rgb "black" title "Data points" ;\
+
