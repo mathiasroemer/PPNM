@@ -2,7 +2,6 @@ CODE = $(filter %.cs,$^)
 LIBS = $(addprefix -reference:, $(filter %.dll,$^))
 MKEXE = mcs -target:exe -out:$@ $(LIBS) $(CODE)
 MKLIB = mcs -target:library -out:$@ $(CODE)
-TIME = time --output=$@ --append --format "%e %U"
 
 default : Out.SignSpline.svg Out.CosDerivAndInteg.svg Out.SecondDerivative.svg
 
