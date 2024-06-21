@@ -150,7 +150,7 @@
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,127.69 L80.92,127.69 M308.06,127.69 L574.82,127.69  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,127.69 L80.92,127.69 M358.40,127.69 L574.82,127.69  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -163,7 +163,7 @@
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,90.85 L80.92,90.85 M308.06,90.85 L574.82,90.85  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,90.85 L80.92,90.85 M358.40,90.85 L574.82,90.85  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -305,15 +305,15 @@
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M80.92,153.01 L80.92,63.01 L308.06,63.01 L308.06,153.01 L80.92,153.01 Z  '/></g>
+	<path stroke='black'  d='M80.92,153.01 L80.92,63.01 L358.40,63.01 L358.40,153.01 L80.92,153.01 Z  '/></g>
 	<g id="gnuplot_plot_1" ><title>Function [Cos(x)]</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(248.72,75.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(299.06,75.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Function [Cos(x)]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(  0,   0,   0)'  d='M257.11,72.01 L299.67,72.01 M72.53,54.01 L77.60,55.85 L82.68,61.33 L87.75,70.34 L92.82,82.70 L97.90,98.17
+	<path stroke='rgb(  0,   0,   0)'  d='M307.45,72.01 L350.01,72.01 M72.53,54.01 L77.60,55.85 L82.68,61.33 L87.75,70.34 L92.82,82.70 L97.90,98.17
 		L102.97,116.43 L108.05,137.12 L113.12,159.84 L118.19,184.11 L123.27,209.47 L128.34,235.40 L133.41,261.38 L138.49,286.91
 		L143.56,311.46 L148.63,334.55 L153.71,355.71 L158.78,374.53 L163.86,390.63 L168.93,403.68 L174.00,413.43 L179.08,419.69
 		L184.15,422.31 L189.22,421.27 L194.30,416.57 L199.37,408.30 L204.44,396.65 L209.52,381.82 L214.59,364.14 L219.67,343.93
@@ -329,7 +329,7 @@
 	</g>
 	<g id="gnuplot_plot_2" ><title>Subspline interpolation</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(248.72,93.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(299.06,93.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Subspline interpolation</tspan></text>
 	</g>
 </g>
@@ -434,13 +434,13 @@
 	<use xlink:href='#gpPt0' transform='translate(564.67,163.27) scale(4.50)' color='rgb(  0, 158, 115)'/>
 	<use xlink:href='#gpPt0' transform='translate(569.75,187.61) scale(4.50)' color='rgb(  0, 158, 115)'/>
 	<use xlink:href='#gpPt0' transform='translate(574.82,213.02) scale(4.50)' color='rgb(  0, 158, 115)'/>
-	<use xlink:href='#gpPt0' transform='translate(278.39,90.01) scale(4.50)' color='rgb(  0, 158, 115)'/>
+	<use xlink:href='#gpPt0' transform='translate(328.73,90.01) scale(4.50)' color='rgb(  0, 158, 115)'/>
 </g>
 	</g>
-	<g id="gnuplot_plot_3" ><title>Subspline derivative [-Sin(x) ?]</title>
+	<g id="gnuplot_plot_3" ><title>Subspline first derivative [-Sin(x) ?]</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(248.72,111.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
-		<text><tspan font-family="Arial" >Subspline derivative [-Sin(x) ?]</tspan></text>
+	<g transform="translate(299.06,111.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+		<text><tspan font-family="Arial" >Subspline first derivative [-Sin(x) ?]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -544,12 +544,12 @@
 	<use xlink:href='#gpPt5' transform='translate(564.67,405.60) scale(2.25)' color='rgb( 86, 180, 233)'/>
 	<use xlink:href='#gpPt5' transform='translate(569.75,414.58) scale(2.25)' color='rgb( 86, 180, 233)'/>
 	<use xlink:href='#gpPt5' transform='translate(574.82,420.67) scale(2.25)' color='rgb( 86, 180, 233)'/>
-	<use xlink:href='#gpPt5' transform='translate(278.39,108.01) scale(2.25)' color='rgb( 86, 180, 233)'/>
+	<use xlink:href='#gpPt5' transform='translate(328.73,108.01) scale(2.25)' color='rgb( 86, 180, 233)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_4" ><title>Subspline integral [Sin(x) ?]</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(248.72,129.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(299.06,129.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Subspline integral [Sin(x) ?]</tspan></text>
 	</g>
 </g>
@@ -654,12 +654,12 @@
 	<use xlink:href='#gpPt5' transform='translate(564.67,70.26) scale(2.25)' color='rgb(230, 159,   0)'/>
 	<use xlink:href='#gpPt5' transform='translate(569.75,61.37) scale(2.25)' color='rgb(230, 159,   0)'/>
 	<use xlink:href='#gpPt5' transform='translate(574.82,56.00) scale(2.25)' color='rgb(230, 159,   0)'/>
-	<use xlink:href='#gpPt5' transform='translate(278.39,126.01) scale(2.25)' color='rgb(230, 159,   0)'/>
+	<use xlink:href='#gpPt5' transform='translate(328.73,126.01) scale(2.25)' color='rgb(230, 159,   0)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_5" ><title>Data points</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(248.72,147.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(299.06,147.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Data points</tspan></text>
 	</g>
 </g>
@@ -679,7 +679,7 @@
 	<use xlink:href='#gpPt6' transform='translate(503.06,82.77) scale(3.15)' color='rgb(  0,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(538.94,71.06) scale(3.15)' color='rgb(  0,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(574.82,213.02) scale(3.15)' color='rgb(  0,   0,   0)'/>
-	<use xlink:href='#gpPt6' transform='translate(278.39,144.01) scale(3.15)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt6' transform='translate(328.73,144.01) scale(3.15)' color='rgb(  0,   0,   0)'/>
 </g>
 	</g>
 <g fill="none" color="#FFFFFF" stroke="rgb(  0,   0,   0)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">

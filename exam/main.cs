@@ -4,7 +4,7 @@ using static System.Math;
 public class main {
 
 public static int Main(){
-		vector xs = new vector(-3,-2,-1,-0.25,0.25,1,2,3);
+		vector xs = new vector(-3,-2,-1,-0.35,0.35,1,2,3);
 
 		vector ys = new vector(xs.size);
 		vector dys = new vector(xs.size);
@@ -20,7 +20,7 @@ public static int Main(){
 		
 		System.Console.Out.WriteLine("\n");
 
-		int numPoints = 100;
+		int numPoints = 1000;
 		
 		double start = xs[0];
 		double last = xs[xs.size-1];
@@ -31,6 +31,12 @@ public static int Main(){
 			double usex = start + i*step;
 			Console.Out.WriteLine($"{usex} {sign_function(usex)}");
 		}
+
+		numPoints = 100;
+
+		start = xs[0];
+		last = xs[xs.size-1];
+		step = (last-start)/(numPoints-1);
 
 		System.Console.Out.WriteLine("\n");
 		///Subspline interp output on sign
@@ -109,6 +115,49 @@ public static int Main(){
 		}
 		
 		System.Console.Out.WriteLine("\n");
+			
+		start = xs[0];
+		last = xs[xs.size-1];
+		step = (last-start)/(numPoints-1);
+		
+	
+		//Subspline of order 3 - sign first derivative
+		for (int i=0;i<numPoints;i++){
+			double usex = start + i*step;
+			Console.Out.WriteLine($"{usex} {subspline.derivative(usex)}");
+		}
+		
+		System.Console.Out.WriteLine("\n");
+
+		//Subspline of order 3 - sign second derivative
+		for (int i=0;i<numPoints;i++){
+			double usex = start + i*step;
+			Console.Out.WriteLine($"{usex} {subspline.second_derivative(usex)}");
+		}
+		
+		System.Console.Out.WriteLine("\n");
+		
+		///Subspline of order 4 interp output on sign
+		var bettersubspline = new bettersubspline(xs,ys,dys);
+		
+		for (int i=0;i<numPoints;i++){
+			double usex = start + i*step;
+			Console.Out.WriteLine($"{usex} {bettersubspline.evaluate(usex)}");
+		}
+		
+		System.Console.Out.WriteLine("\n");
+
+		numPoints = 1000;		
+
+		start = xs[0];
+		last = xs[xs.size-1];
+		step = (last-start)/(numPoints-1);
+		
+		//Subspline of order 4 - sign first derivative
+		for (int i=0;i<numPoints;i++){
+			double usex = start + i*step;
+			Console.Out.WriteLine($"{usex} {bettersubspline.derivative(usex)}");
+		}
 		
 		return 0;
 	}

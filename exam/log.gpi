@@ -1,16 +1,23 @@
 \
-	set terminal svg background "white" ;\
-	set out "Out.CosDerivAndInteg.svg" ;\
+	set terminal svg size 1100,600 background "white" ;\
+	set out "Out.SecondDerivative.svg" ;\
 	set key left ;\
-	set key box width -12 ;\
+	set key box width -8 ;\
 	set xlabel "x";\
 	set ylabel "y";\
 	set grid ;\
-	set title "Subspline interpolation of Sign(x)";\
+	set title "Subspline of Sign(x) using order 3";\
+	set multiplot layout 1,2 rowsfirst ;\
 	plot \
-	"Out.Splines.data" index 5 using 1:2 with lines lc rgb "black" title "Function [Cos(x)]" \
-	,"Out.Splines.data" index 6 using 1:2 pointtype 1 title "Subspline interpolation" \
-	,"Out.Splines.data" index 7 using 1:2 pointtype 6 ps 0.5 title "Subspline derivative [-Sin(x) ?]" \
-	,"Out.Splines.data" index 8 using 1:2 pointtype 6 ps 0.5 title "Subspline integral [Sin(x) ?]" \
-	,"Out.Splines.data" index 4 using 1:2 pointtype 7 ps 0.7 lc rgb "black" title "Data points" ;\
+	"Out.Splines.data" index 1 using 1:2 with lines lc rgb "black" title "Function [Sign(x)]" \
+	,"Out.Splines.data" index 2 using 1:2 pointtype 1 title "Subspline interpolation" \
+	,"Out.Splines.data" index 9 using 1:2 pointtype 6 ps 0.5 title "First derivative" \
+	,"Out.Splines.data" index 10 using 1:2 pointtype 6 ps 0.5 title "Second derivative" \
+	,"Out.Splines.data" index 0 using 1:2 pointtype 7 ps 0.7 lc rgb "black" title "Data points" ;\
+	set title "Subspline of Sign(x) using order 4";\
+	plot \
+	"Out.Splines.data" index 1 using 1:2 with lines lc rgb "black" title "Function [Sign(x)]" \
+	,"Out.Splines.data" index 11 using 1:2 pointtype 1 title "Subspline interpolation" \
+	,"Out.Splines.data" index 12 using 1:2 pointtype 6 ps 0.5 title "First derivative" \
+	,"Out.Splines.data" index 0 using 1:2 pointtype 7 ps 0.7 lc rgb "black" title "Data points" ;\
 
