@@ -58,7 +58,7 @@ Out.CosDerivAndInteg.svg : Out.Splines.data
 		set xlabel "x";\
 		set ylabel "y";\
 		set grid ;\
-		set title "Subspline interpolation of Sign(x)";\
+		set title "Subspline interpolation of Cos(x)";\
 		plot \
 		"$<" index 5 using 1:2 with lines lc rgb "black" title "Function [Cos(x)]" \
 		,"$<" index 6 using 1:2 pointtype 1 title "Subspline interpolation" \
