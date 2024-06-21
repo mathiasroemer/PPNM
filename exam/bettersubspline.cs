@@ -73,27 +73,5 @@ public class bettersubspline {
 		double ddsi = 2*c[i]+6*d[i]*(z-x[i])+2*e[i]*(6*Math.Pow(z,2)-6*z*(x[i]+x[i+1])+Math.Pow(x[i],2)+Math.Pow(x[i+1],2)+4*x[i]+x[i+1]);
 		return ddsi;
 	}//second derivative
-
-
-	public double integral(double z){
-		/* evaluate the integral */
-		int i = binsearch(x,z);
-
-		double intOut = 0;
-		for(int j=0;j<i;j++){  
-		    intOut += (y[j]*(x[j+1]-x[j])+b[j]*Pow((x[j+1]-x[j]),2)/2+c[j]*Pow((x[j+1]-x[j]),3)/3)+d[j]*Pow((x[j+1]-x[j]),4)/4.0;
-		}
-
-		//Need to include point at z:
-		intOut += (y[i]*(z-x[i])+b[i]*Pow((z-x[i]),2)/2+c[i]*Pow((z-x[i]),3)/3+d[i]*Pow((z-x[i]),4)/4);
-
-		//integration gives us an additional constant which in this case is C = 0:
-		double C = 0;
-		intOut += C;
-
-
-		return intOut;
-		
-	}//integral
 }
 
