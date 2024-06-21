@@ -37,7 +37,7 @@ Out.SignSpline.svg : Out.Splines.data
 		set terminal svg background "white" ;\
 		set out "$@" ;\
 		set key left ;\
-		set key box width -8 ;\
+		set key box width -9 ;\
 		set xlabel "x";\
 		set ylabel "y";\
 		set grid ;\
@@ -53,7 +53,8 @@ Out.CosDerivAndInteg.svg : Out.Splines.data
 	echo '\
 		set terminal svg background "white" ;\
 		set out "$@" ;\
-		set key left ;\
+		set key right ;\
+		set key bottom ;\
 		set key box width -12 ;\
 		set xlabel "x";\
 		set ylabel "y";\

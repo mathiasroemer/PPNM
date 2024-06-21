@@ -111,7 +111,7 @@
 <g fill="none" color="black" stroke="black" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="0.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,115.41 L80.92,115.41 M291.28,115.41 L574.82,115.41  '/></g>
+	<path stroke='gray' stroke-dasharray='2,4' class="gridline"  d='M72.53,115.41 L80.92,115.41 M282.89,115.41 L574.82,115.41  '/></g>
 <g fill="none" color="gray" stroke="gray" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -240,15 +240,15 @@
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M80.92,135.01 L80.92,63.01 L291.28,63.01 L291.28,135.01 L80.92,135.01 Z  '/></g>
+	<path stroke='black'  d='M80.92,135.01 L80.92,63.01 L282.89,63.01 L282.89,135.01 L80.92,135.01 Z  '/></g>
 	<g id="gnuplot_plot_1" ><title>Function [Sign(x)]</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(231.94,75.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(223.55,75.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Function [Sign(x)]</tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(  0,   0,   0)'  d='M240.33,72.01 L282.89,72.01 M72.53,361.00 L73.03,361.00 L73.54,361.00 L74.04,361.00 L74.54,361.00 L75.04,361.00
+	<path stroke='rgb(  0,   0,   0)'  d='M231.94,72.01 L274.50,72.01 M72.53,361.00 L73.03,361.00 L73.54,361.00 L74.04,361.00 L74.54,361.00 L75.04,361.00
 		L75.55,361.00 L76.05,361.00 L76.55,361.00 L77.06,361.00 L77.56,361.00 L78.06,361.00 L78.56,361.00 L79.07,361.00
 		L79.57,361.00 L80.07,361.00 L80.57,361.00 L81.08,361.00 L81.58,361.00 L82.08,361.00 L82.59,361.00 L83.09,361.00
 		L83.59,361.00 L84.09,361.00 L84.60,361.00 L85.10,361.00 L85.60,361.00 L86.11,361.00 L86.61,361.00 L87.11,361.00
@@ -377,7 +377,7 @@
 	</g>
 	<g id="gnuplot_plot_2" ><title>Subspline interpolation</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(231.94,93.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(223.55,93.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Subspline interpolation</tspan></text>
 	</g>
 </g>
@@ -482,12 +482,12 @@
 	<use xlink:href='#gpPt0' transform='translate(564.67,115.41) scale(4.50)' color='rgb(  0, 158, 115)'/>
 	<use xlink:href='#gpPt0' transform='translate(569.75,115.41) scale(4.50)' color='rgb(  0, 158, 115)'/>
 	<use xlink:href='#gpPt0' transform='translate(574.82,115.41) scale(4.50)' color='rgb(  0, 158, 115)'/>
-	<use xlink:href='#gpPt0' transform='translate(261.61,90.01) scale(4.50)' color='rgb(  0, 158, 115)'/>
+	<use xlink:href='#gpPt0' transform='translate(253.22,90.01) scale(4.50)' color='rgb(  0, 158, 115)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_3" ><title>Cubic spline interpolation</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(231.94,111.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(223.55,111.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Cubic spline interpolation</tspan></text>
 	</g>
 </g>
@@ -592,12 +592,12 @@
 	<use xlink:href='#gpPt5' transform='translate(564.67,114.21) scale(2.25)' color='rgb( 86, 180, 233)'/>
 	<use xlink:href='#gpPt5' transform='translate(569.75,114.80) scale(2.25)' color='rgb( 86, 180, 233)'/>
 	<use xlink:href='#gpPt5' transform='translate(574.82,115.41) scale(2.25)' color='rgb( 86, 180, 233)'/>
-	<use xlink:href='#gpPt5' transform='translate(261.61,108.01) scale(2.25)' color='rgb( 86, 180, 233)'/>
+	<use xlink:href='#gpPt5' transform='translate(253.22,108.01) scale(2.25)' color='rgb( 86, 180, 233)'/>
 </g>
 	</g>
 	<g id="gnuplot_plot_4" ><title>Data points</title>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(231.94,129.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
+	<g transform="translate(223.55,129.91)" stroke="none" fill="black" font-family="Arial" font-size="12.00"  text-anchor="end">
 		<text><tspan font-family="Arial" >Data points</tspan></text>
 	</g>
 </g>
@@ -610,7 +610,7 @@
 	<use xlink:href='#gpPt6' transform='translate(407.39,115.41) scale(3.15)' color='rgb(  0,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(491.11,115.41) scale(3.15)' color='rgb(  0,   0,   0)'/>
 	<use xlink:href='#gpPt6' transform='translate(574.82,115.41) scale(3.15)' color='rgb(  0,   0,   0)'/>
-	<use xlink:href='#gpPt6' transform='translate(261.61,126.01) scale(3.15)' color='rgb(  0,   0,   0)'/>
+	<use xlink:href='#gpPt6' transform='translate(253.22,126.01) scale(3.15)' color='rgb(  0,   0,   0)'/>
 </g>
 	</g>
 <g fill="none" color="#FFFFFF" stroke="rgb(  0,   0,   0)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
